@@ -1,0 +1,15 @@
+CREATE TABLE topicos (
+    id BIGINT NOT NULL AUTO_INCREMENT,
+    titulo VARCHAR(100) UNIQUE NOT NULL,
+    fecha_creacion DATETIME(0) DEFAULT CURRENT_TIMESTAMP,
+    status ENUM('ABIERTO', 'RESUELTO', 'CERRADO', 'SPAM') DEFAULT 'ABIERTO' NOT NULL,
+    mensaje VARCHAR(500) UNIQUE NOT NULL,
+    activo TINYINT NOT NULL DEFAULT 1,
+
+    cursos_id BIGINT NOT NULL,
+    usuarios_id BIGINT NOT NULL,
+
+    PRIMARY KEY(id),
+    FOREIGN KEY (cursos_id) REFERENCES cursos(id),
+    FOREIGN KEY (usuarios_id) REFERENCES usuarios(id)
+);
